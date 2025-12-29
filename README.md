@@ -1,26 +1,38 @@
-# UVM-Based PCIe Protocol Verification
+# UVM-Based PCIe Protocol Verification (Educational)
 
-This repository demonstrates a UVM-based verification environment
-for a simplified PCIe protocol model.
+This project demonstrates a verification-oriented setup for a **simplified PCIe Transaction Layer model** using **SystemVerilog**, with an emphasis on:
+- **Protocol/packet sanity checking using SVA**
+- **Reusable verification structure (tb/rtl/docs/assertions)**
+- **Regression readiness and documentation**
 
-## Project Scope
-- Transaction-level PCIe behavior verification
-- UVM testbench architecture (driver, monitor, scoreboard)
-- Assertion-based checks for protocol compliance
-- Constrained-random stimulus generation
+> Note: This repository is intentionally **non-proprietary** and **educational**.  
+> It does not include production PCIe IP, PHY, LTSSM, or full DLL behavior.
 
-## Key Features
-- Verification of PCIe TLP packet formatting
-- Validation of flow control and ordering rules
-- Coverage-driven verification for normal and corner cases
+---
 
-## Tools & Technologies
-- SystemVerilog
-- UVM
-- QuestaSim / Synopsys VCS (simulation)
-- SystemVerilog Assertions (SVA)
+## What’s Implemented Today
+✅ Clean repository structure aligned with DV workflows  
+✅ PCIe-oriented **test plan** (`docs/README.md`)  
+✅ Starter **SVA assertion suite** (`assertions/pcie_sva.sv`)  
+✅ Bring-up **top-level testbench** (`tb/top_tb.sv`) that instantiates assertions  
+✅ Minimal directed smoke tests (ready/valid + basic TLP scenarios)
 
-## Notes
-This project uses simplified RTL and testbench components
-created solely for learning and demonstration purposes.
-No proprietary or production IP is included.
+---
+
+## Simplified Interface Model
+The verification targets a simplified “TLP-like” channel with:
+- `tlp_valid / tlp_ready` handshake  
+- `tlp_type, tlp_addr, tlp_len_dw, tlp_tag` fields  
+- optional `cpl_status` for completion packets
+
+Encodings (current):
+- `0: MemRd`
+- `1: MemWr`
+- `2: Cpl`
+- `3: CplD`
+
+(These can be updated to match a future RTL model.)
+
+---
+
+## Repository Layout
