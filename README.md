@@ -36,3 +36,15 @@ Encodings (current):
 ---
 
 ## Repository Layout
+```text
+├── README.md
+├── tb/
+│   ├── README.md
+│   └── top_tb.sv
+├── rtl/
+│   └── README.md
+├── docs/
+│   └── README.md
+└── assertions/
+    ├── README.md
+    └── pcie_sva.sv
